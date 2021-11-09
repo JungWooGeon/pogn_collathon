@@ -116,7 +116,7 @@ class AddActivity : AppCompatActivity() {
             var imageUrl = it.toString()
             var photo = Photo(title, mainText, date, nickname, family, imageUrl)
             firestore.collection(family).add(photo).addOnSuccessListener {
-                uploadImage(it.id)
+                uploadImage(it.id.toString())
                 Toast.makeText(this, "데이터가 저장되었습니다", Toast.LENGTH_SHORT).show()
             }
         }
