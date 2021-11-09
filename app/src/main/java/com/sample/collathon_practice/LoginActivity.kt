@@ -1,12 +1,17 @@
 package com.sample.collathon_practice
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -36,20 +41,10 @@ class LoginActivity : AppCompatActivity() {
                                 .createUserWithEmailAndPassword(email,pwd)
                                 .addOnCompleteListener(this){task ->
                                     if(task.isSuccessful){
-                                        Toast.makeText(applicationContext,"회원가입 성공",Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(applicationContext,"가족에 합류하세요!",Toast.LENGTH_SHORT).show()
 
-                                        // 여기서 firestorage에서 users내에 userid 존재 여부 확인
-                                        var new = false
-                                        if(new){
-                                            // 없으면 생성 + 가족(생성 or 코드)
-                                            val intent = Intent(this, NewActivity::class.java)
-                                            startActivity(intent)
-                                        }
-                                        else {
-                                            // 있으면 그냥 로그인 MainActivity로 이동
-                                            val intent = Intent(this, MainActivity::class.java)
-                                            startActivity(intent)
-                                        }
+                                        val intent = Intent(this, NewActivity::class.java)
+                                        startActivity(intent)
                                     }
                                     else{
                                         Toast.makeText(applicationContext,"email이나 password를 확인해주세요",Toast.LENGTH_SHORT).show()

@@ -7,34 +7,78 @@
     tools:context=".NewActivity">
 
     <EditText
-        android:id="@+id/family_id"
+        android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="109dp"
-        android:layout_marginEnd="92dp"
-        android:layout_marginBottom="432dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="100dp"
         android:ems="10"
+        android:hint="별명"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="가족코드"
         android:textColor="#9A9A9A"
-        android:textColorHint="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColorHint="#57000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="41dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="228dp"
         android:layout_marginEnd="42dp"
         android:text="초대받은 가족코드를 입력하세요."
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_join"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="161dp"
+        android:text="가족합류"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/family_id" />
+
+    <EditText
+        android:id="@+id/family_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="109dp"
+        android:layout_marginEnd="92dp"
+        android:layout_marginBottom="384dp"
+        android:ems="10"
+        android:hint="가족코드"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColor="#9A9A9A"
+        android:textColorHint="#57000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="42dp"
+        android:text="사용할 별명을 입력하세요."
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,12 +88,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="41dp"
         android:layout_marginEnd="42dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="44dp"
         android:text="새로운 가족을 생성합니다."
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_create"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.363"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -58,24 +101,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="161dp"
         android:layout_marginEnd="161dp"
-        android:layout_marginBottom="132dp"
+        android:layout_marginBottom="108dp"
         android:text="가족생성"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btn_join"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="161dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="161dp"
-        android:text="가족합류"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/family_id" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
