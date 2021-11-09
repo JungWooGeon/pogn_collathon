@@ -30,11 +30,10 @@ class NewActivity : AppCompatActivity() {
 //        }
 //        db.collection("users").document(userid).set(user_data)
 
-        var username = this.findViewById<EditText>(R.id.user_name).text.toString().trim()
-
         val userid = user?.uid // email?.split("@")?.get(0).toString()
 
         btn_join.setOnClickListener {
+            var username = this.findViewById<EditText>(R.id.user_name).text.toString().trim()
             var familyid = this.findViewById<EditText>(R.id.family_id).text.toString().trim()
             // TODO: 존재하는 family id인지 확인 필요
 
@@ -76,6 +75,7 @@ class NewActivity : AppCompatActivity() {
 
         btn_create.setOnClickListener {
             val familyid = userid?.let { it1 -> createFamID(it1) }
+            var username = this.findViewById<EditText>(R.id.user_name).text.toString().trim()
             var familyname = this.findViewById<EditText>(R.id.family_name).text.toString().trim()
 
             if (userid != null && username != null && familyid != null) {
