@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.sample.collathon_practice.model.User
 
-class ListAdapter(val context: Context, val UserList: ArrayList<User>) : BaseAdapter() {
+class ListAdapter(val context: Context?, val UserList: ArrayList<User>) : BaseAdapter() {
     override fun getCount(): Int {
         return UserList.size
     }

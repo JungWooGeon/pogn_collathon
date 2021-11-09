@@ -5,17 +5,31 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.ImageView
+import android.widget.ListView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.sample.collathon_practice.AddActivity
+import com.sample.collathon_practice.R
 import com.sample.collathon_practice.databinding.FragmentDashboardBinding
+import com.sample.collathon_practice.model.User
+import com.sample.collathon_practice.ListAdapter
+import kotlinx.android.synthetic.main.fragment_dashboard.*
+import kotlinx.android.synthetic.main.fragment_dashboard.view.*
 
 class DashboardFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
     private var _binding: FragmentDashboardBinding? = null
+    var UserList = arrayListOf<User>(
+        User(R.drawable.ic_home_black_24dp,"한국형수달","korean-otter@naver.com","hello world!!!"),
+        User(R.drawable.ic_home_black_24dp,"김수연","jmssk11@naver.com","왜 먹어도 먹어도 배가 고픈 것일까"),
+        User(R.drawable.ic_home_black_24dp,"임채원","hello@gmail.com","으이이익"),
+        User(R.drawable.ic_home_black_24dp,"물고기","asdf@naver.com","ㅁㄴㅇㄹasdfasdfasdfasdfasdfasdfasdfasdfㅁㄴㅇㄹas d f a s df as d fa s d f a s d f as d f a s d f a s df"),
+        User(R.drawable.ic_home_black_24dp,"도마뱀","qwer@naver.com","ㅁㄴㅇㄹasdfasdfasdfㅁㄴㅇㄹasdfasdfasdfㅁㄴㅇㄹasdfasdfasdfㅁㄴㅇㄹasdfasdfasdf"),
+        User(R.drawable.ic_home_black_24dp,"멈무이","zxcv@naver.com","보자보자 으디보자"),
+        User(R.drawable.ic_home_black_24dp,"냥이","cat@naver.com","넌 두고보자"),
+        User(R.drawable.ic_home_black_24dp,"집사님","asdfasdf@naver.com","보자보자 으디보자"),
+        User(R.drawable.ic_home_black_24dp,"otter","otter66@kakao.com","넌 다음에 보자")
+    )
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -26,16 +40,15 @@ class DashboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
-
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+        val view: View = inflater.inflate(R.layout.fragment_dashboard, container, false)
+
+        var Adapter = ListAdapter(activity, UserList)
+        var list = view.findViewById<ListView>(R.id.list_view)
+        list.adapter = Adapter
+
         return root
     }
 
