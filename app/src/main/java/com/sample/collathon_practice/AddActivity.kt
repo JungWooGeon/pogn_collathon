@@ -37,7 +37,6 @@ class AddActivity : AppCompatActivity() {
     lateinit var storage: FirebaseStorage
     lateinit var firestore: FirebaseFirestore
 
-    var nickname = "temp"
     var family = "temp_family"
 
     override fun onCreate(savedInstanceState: Bundle?) {

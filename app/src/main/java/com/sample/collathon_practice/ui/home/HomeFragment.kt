@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -18,6 +19,7 @@ import com.sample.collathon_practice.R
 import com.sample.collathon_practice.TimeCapsule
 import com.sample.collathon_practice.databinding.FragmentHomeBinding
 import kotlinx.android.synthetic.main.item_timecapsule.view.*
+import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment() {
 
@@ -25,6 +27,7 @@ class HomeFragment : Fragment() {
     val db = Firebase.firestore
     var user_family=""
     var family_name=""
+    var family_member:ArrayList<Any?> = arrayListOf<Any?>()
     
     private val binding get() = _binding!!
 
@@ -46,13 +49,43 @@ class HomeFragment : Fragment() {
                     db?.collection("family").document(user_family).get()
                         .addOnSuccessListener { result->
                             family_name=result.data?.get("name").toString().trim()
+                            family_member= result.data?.get("members") as ArrayList<Any?>
+
+                            // family -> 최대 5명 보이도록 설정
+                            while(family_member.size<5){
+                                family_member.add("0")
+                                if(family_member.size>=5){
+                                    break
+                                }
+                            }
+
+                            var k=1
+                            for(i in family_member){
+                                var temp=""
+                                if (i=="0"){
+                                    temp="없음"
+                                }else{
+                                    db?.collection("users").document(i.toString()).get()
+                                        .addOnSuccessListener { result2->
+                                            temp=result2.data?.get("name").toString().trim()
+                                            var x=root.findViewById<TextView>(getResources().getIdentifier("user_"+k,"id","com.sample.collathon_practice"))
+                                            x.setText(temp)
+                                            k++
+                                        }
+                                }
+                            }
+
                             var familyname=binding.fmname
                             familyname.text=family_name
 
                             var recyclerView:RecyclerView=binding.homeRecyclerview
                             recyclerView.adapter = RecyclerViewAdapter()
                             recyclerView.layoutManager = LinearLayoutManager(getActivity())
+
                         }
+
+
+
                 }
         }
         return root

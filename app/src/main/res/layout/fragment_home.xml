@@ -46,4 +46,157 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_member" />
+
+    <View
+        android:id="@+id/view_1"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/shape_circle"
+        app:layout_constraintStart_toStartOf="@+id/view_member"
+        app:layout_constraintTop_toTopOf="@+id/view_member" />
+
+    <TextView
+        android:id="@+id/user_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="27dp"
+        android:text="없음"
+        app:layout_constraintBottom_toBottomOf="@+id/view_1"
+        app:layout_constraintEnd_toEndOf="@+id/view_1"
+        app:layout_constraintStart_toStartOf="@+id/view_1"
+        app:layout_constraintTop_toTopOf="@+id/view_1" />
+
+    <View
+        android:id="@+id/view_2"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="27dp"
+        android:background="@drawable/shape_circle"
+        app:layout_constraintStart_toEndOf="@+id/view_1"
+        app:layout_constraintTop_toTopOf="@+id/view_member" />
+
+    <TextView
+        android:id="@+id/user_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="없음"
+        app:layout_constraintBottom_toBottomOf="@+id/view_2"
+        app:layout_constraintEnd_toEndOf="@+id/view_2"
+        app:layout_constraintStart_toStartOf="@+id/view_2"
+        app:layout_constraintTop_toTopOf="@+id/view_2" />
+
+    <View
+        android:id="@+id/view_3"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/shape_circle"
+        app:layout_constraintEnd_toEndOf="@+id/view_member"
+        app:layout_constraintStart_toEndOf="@+id/view_2"
+        app:layout_constraintTop_toTopOf="@+id/view_member" />
+
+    <TextView
+        android:id="@+id/user_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="없음"
+        app:layout_constraintBottom_toBottomOf="@+id/view_3"
+        app:layout_constraintEnd_toEndOf="@+id/view_3"
+        app:layout_constraintStart_toStartOf="@+id/view_3"
+        app:layout_constraintTop_toTopOf="@+id/view_3" />
+
+    <View
+        android:id="@+id/view_4"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="76dp"
+        android:background="@drawable/shape_circle"
+        app:layout_constraintBottom_toBottomOf="@+id/view_member"
+        app:layout_constraintStart_toStartOf="@+id/view_member"
+        app:layout_constraintTop_toBottomOf="@+id/view_2"
+        app:layout_constraintVertical_bias="0.421" />
+
+    <TextView
+        android:id="@+id/user_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="없음"
+        app:layout_constraintBottom_toBottomOf="@+id/view_4"
+        app:layout_constraintEnd_toEndOf="@+id/view_4"
+        app:layout_constraintStart_toStartOf="@+id/view_4"
+        app:layout_constraintTop_toTopOf="@+id/view_4" />
+
+    <View
+        android:id="@+id/view_5"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:background="@drawable/shape_circle"
+        app:layout_constraintBottom_toBottomOf="@+id/view_member"
+        app:layout_constraintEnd_toEndOf="@+id/view_member"
+        app:layout_constraintHorizontal_bias="0.314"
+        app:layout_constraintStart_toEndOf="@+id/view_4"
+        app:layout_constraintTop_toBottomOf="@+id/view_2" />
+
+    <TextView
+        android:id="@+id/user_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="없음"
+        app:layout_constraintBottom_toBottomOf="@+id/view_5"
+        app:layout_constraintEnd_toEndOf="@+id/view_5"
+        app:layout_constraintStart_toStartOf="@+id/view_5"
+        app:layout_constraintTop_toTopOf="@+id/view_5" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="39dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="39dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_1"
+        app:layout_constraintStart_toStartOf="@+id/view_1"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="39dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="39dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_2"
+        app:layout_constraintStart_toStartOf="@+id/view_2"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="39dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="39dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_3"
+        app:layout_constraintStart_toStartOf="@+id/view_3"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="39dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="39dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_4"
+        app:layout_constraintStart_toStartOf="@+id/view_4"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="39dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="39dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_5"
+        app:layout_constraintStart_toStartOf="@+id/view_5"
+        tools:src="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>
