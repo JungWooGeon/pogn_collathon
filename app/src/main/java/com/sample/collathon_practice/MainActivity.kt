@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // action bar hide
         var actionBar : ActionBar?
 
         actionBar = supportActionBar;

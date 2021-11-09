@@ -1,5 +1,6 @@
 package com.sample.collathon_practice.ui.dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.sample.collathon_practice.R
+import com.sample.collathon_practice.AddActivity
 import com.sample.collathon_practice.databinding.FragmentDashboardBinding
 
 class DashboardFragment : Fragment() {
@@ -43,5 +42,15 @@ class DashboardFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        binding.goAdd.setOnClickListener {
+            activity?.let{
+                val intent = Intent(context, AddActivity::class.java)
+                startActivity(intent)
+            }
+        }
     }
 }

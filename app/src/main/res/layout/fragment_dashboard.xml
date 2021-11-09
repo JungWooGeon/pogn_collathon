@@ -21,7 +21,7 @@ tools:context=".ui.dashboard.DashboardFragment">
     app:layout_constraintTop_toTopOf="parent"/>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/main_fab"
+        android:id="@+id/go_add"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_alignParentRight="true"
