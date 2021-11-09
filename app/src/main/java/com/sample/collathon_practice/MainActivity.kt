@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var user: FirebaseUser
     var userfeel: Any? = null
+    var username=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +55,7 @@ class MainActivity : AppCompatActivity() {
 
         user = Firebase.auth.currentUser!!
 //        getTheFeel(user.uid)
+        setId(user.uid)
     }
 
     private fun getTheFeel(uid: String?) {
@@ -66,4 +68,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    fun setId(uid: String?) {
+        if (uid != null){
+            val db = Firebase.firestore
+
+            var docRef = db.collection("users").document(uid)
+            docRef.get().addOnSuccessListener { result ->
+                username = result.data?.get("name") as String
+            }
+        }
+    }
+
+
 }

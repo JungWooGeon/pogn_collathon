@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
@@ -13,6 +14,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.sample.collathon_practice.LoginActivity
+import com.sample.collathon_practice.MainActivity
 import com.sample.collathon_practice.R
 import com.sample.collathon_practice.databinding.FragmentNotificationsBinding
 
@@ -35,6 +37,9 @@ class NotificationsFragment : Fragment() {
 
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        var name=root.findViewById<TextView>(R.id.setting_name)
+        name.setText((getActivity() as MainActivity).username)
 
         binding.btnLogout.setOnClickListener{
             FirebaseAuth.getInstance().signOut()
