@@ -11,11 +11,18 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.sample.collathon_practice.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    lateinit var user: FirebaseUser
+    var userfeel: Any? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,5 +51,19 @@ class MainActivity : AppCompatActivity() {
 
         // permission 최초 한 번
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
+
+        user = Firebase.auth.currentUser!!
+//        getTheFeel(user.uid)
+    }
+
+    private fun getTheFeel(uid: String?) {
+        if (uid != null){
+            val db = Firebase.firestore
+
+            var docRef = db.collection("users").document(uid)
+            docRef.get().addOnSuccessListener { result ->
+                userfeel = result.data?.get("feel")
+            }
+        }
     }
 }
