@@ -100,6 +100,16 @@ class NewActivity : AppCompatActivity() {
                 docFam.set(famdata).addOnSuccessListener {
                     Log.d("MY WRITE", "Make new family doc Success")
                     Toast.makeText(this, "회원가입에 성공했습니다!", Toast.LENGTH_LONG).show()
+
+                    //회원가입시 posts 생성성
+                   val signpost= hashMapOf(
+                        "content" to "가입을 축하합니다",
+                        "image" to "",
+                        "time" to "2021/11/15 22:8",
+                        "title" to "가입 축하합니다",
+                        "userid" to "관리자"
+                    )
+                    db.collection("family").document(familyid).collection("posts").document("post_manager").set(signpost)
                 }
 
                 val intent = Intent(this, MainActivity::class.java)
