@@ -7,7 +7,7 @@ plugins {
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdk 29
+    compileSdk 30
 
     defaultConfig {
         applicationId "com.sample.collathon_practice"

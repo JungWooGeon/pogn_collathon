@@ -38,8 +38,18 @@ class LoginActivity : AppCompatActivity() {
                                     if(task.isSuccessful){
                                         Toast.makeText(applicationContext,"회원가입 성공",Toast.LENGTH_SHORT).show()
 
-                                        val intent = Intent(this, MainActivity::class.java)
-                                        startActivity(intent)
+                                        // 여기서 firestorage에서 users내에 userid 존재 여부 확인
+                                        var new = false
+                                        if(new){
+                                            // 없으면 생성 + 가족(생성 or 코드)
+                                            val intent = Intent(this, NewActivity::class.java)
+                                            startActivity(intent)
+                                        }
+                                        else {
+                                            // 있으면 그냥 로그인 MainActivity로 이동
+                                            val intent = Intent(this, MainActivity::class.java)
+                                            startActivity(intent)
+                                        }
                                     }
                                     else{
                                         Toast.makeText(applicationContext,"email이나 password를 확인해주세요",Toast.LENGTH_SHORT).show()
