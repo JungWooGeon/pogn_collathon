@@ -6,18 +6,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.RadioGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.sample.collathon_practice.LoginActivity
+import com.sample.collathon_practice.MainActivity
 import com.sample.collathon_practice.R
 import com.sample.collathon_practice.databinding.FragmentNotificationsBinding
 
@@ -41,21 +38,26 @@ class NotificationsFragment : Fragment() {
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        var name=root.findViewById<TextView>(R.id.setting_name)
+        name.setText((getActivity() as MainActivity).username)
+
         binding.btnLogout.setOnClickListener{
             FirebaseAuth.getInstance().signOut()
             val intent = Intent(getActivity(), LoginActivity::class.java)
             startActivity(intent)
         }
 
-        val user = Firebase.auth.currentUser
         val db = Firebase.firestore
+
+        var user = Firebase.auth.currentUser
+        var docRef = user?.let { db.collection("users").document(it.uid) }
+
         var userfeel = 0
 
         //라디오 그룹 설정
         binding.radioGroup.setOnCheckedChangeListener { radioGroup, checkedId ->
             when(checkedId) {
                 R.id.rb_happy -> {
-                    // "feel" to 0
                     userfeel = 0
                     Log.d("MY FEEL", "남은 하루도 계속 행복하세요!")
                 }
@@ -81,14 +83,10 @@ class NotificationsFragment : Fragment() {
                 }
             }
 
-            if (user != null){
-                val docRef = db.collection("users").document(user.uid)
-
-                docRef.update(mapOf(
-                    "feel" to userfeel
-                )).addOnSuccessListener {
-                    Log.d("MY WRITE", "User writes his/her feel")
-                }
+            docRef?.update(mapOf(
+                "feel" to userfeel
+            ))?.addOnSuccessListener {
+                Log.d("MY WRITE", "User writes his/her feel")
             }
         }
 
