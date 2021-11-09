@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -17,7 +16,6 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.sample.collathon_practice.R
 import com.sample.collathon_practice.TimeCapsule
-import com.sample.collathon_practice.databinding.ActivityMainBinding
 import com.sample.collathon_practice.databinding.FragmentHomeBinding
 import kotlinx.android.synthetic.main.item_timecapsule.view.*
 
@@ -51,7 +49,7 @@ class HomeFragment : Fragment() {
                     db?.collection("family").document(user_family).get()
                         .addOnSuccessListener { result->
                             family_name=result.data?.get("name").toString().trim()
-                            var familyname=binding.familyname
+                            var familyname=binding.fmname
                             familyname.text=family_name
 
                             var recyclerView:RecyclerView=binding.homeRecyclerview
