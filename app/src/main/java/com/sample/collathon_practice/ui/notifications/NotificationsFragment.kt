@@ -1,13 +1,17 @@
 package com.sample.collathon_practice.ui.notifications
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.firebase.auth.FirebaseAuth
+import com.sample.collathon_practice.LoginActivity
 import com.sample.collathon_practice.R
 import com.sample.collathon_practice.databinding.FragmentNotificationsBinding
 
@@ -31,10 +35,11 @@ class NotificationsFragment : Fragment() {
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+        binding.btnLogout.setOnClickListener{
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent(getActivity(), LoginActivity::class.java)
+            startActivity(intent)
+        }
         return root
     }
 
