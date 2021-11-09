@@ -14,7 +14,9 @@ import android.widget.TextView
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -111,13 +113,29 @@ class AddActivity : AppCompatActivity() {
             var title = add_title.text.toString()
             var mainText = add_maintext.text.toString()
             var date = date.text.toString()
-
-
             var imageUrl = it.toString()
-            var photo = Photo(title, mainText, date, nickname, family, imageUrl)
-            firestore.collection(family).add(photo).addOnSuccessListener {
-                uploadImage(it.id.toString())
-                Toast.makeText(this, "데이터가 저장되었습니다", Toast.LENGTH_SHORT).show()
+            
+            //DB 저장
+            val user=Firebase.auth.currentUser
+            val db = Firebase.firestore
+            if(user != null){
+                db?.collection("users").document(user.uid).get()
+                    .addOnSuccessListener { result ->
+                        var user_family=result.data?.get("family_id").toString().trim()
+                        var user_name=result.data?.get("name").toString().trim()
+                        var post_user="post_"+user_name
+
+                        val board_info= hashMapOf(
+                            "content" to mainText,
+                            "image" to imageUrl,
+                            "time" to date,
+                            "title" to title,
+                            "userid" to user_name
+                        )
+                        db.collection("family").document(user_family).collection("posts").document(post_user).set(board_info)
+                        uploadImage(it.id.toString())
+                        Toast.makeText(this, "데이터가 저장되었습니다", Toast.LENGTH_SHORT).show()
+                    }
             }
         }
     }
