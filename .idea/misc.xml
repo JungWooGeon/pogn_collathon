@@ -28,6 +28,16 @@
         <entry key="..\:/Users/82108/AndroidStudioProjects/Collathon_practice/app/src/main/res/layout/item_user.xml" value="0.33" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/Collathon_practice/app/src/main/res/menu/bottom_nav_menu.xml" value="0.340625" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/Collathon_practice/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.17685185185185184" />
+        <entry key="..\:/Users/ilove/AndroidStudioProjects/collathon/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.215625" />
+        <entry key="..\:/Users/ilove/AndroidStudioProjects/collathon/app/src/main/res/drawable/selector_radio_btn_angry.xml" value="0.21197916666666666" />
+        <entry key="..\:/Users/ilove/AndroidStudioProjects/collathon/app/src/main/res/drawable/selector_radio_btn_bad.xml" value="0.215625" />
+        <entry key="..\:/Users/ilove/AndroidStudioProjects/collathon/app/src/main/res/drawable/selector_radio_btn_happy.xml" value="0.1984375" />
+        <entry key="..\:/Users/ilove/AndroidStudioProjects/collathon/app/src/main/res/drawable/selector_radio_btn_sad.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/ilove/AndroidStudioProjects/collathon/app/src/main/res/drawable/selector_radio_btn_surprised.xml" value="0.21197916666666666" />
+        <entry key="..\:/Users/ilove/AndroidStudioProjects/collathon/app/src/main/res/drawable/selector_radio_btn_uncomfortable.xml" value="0.21197916666666666" />
+        <entry key="..\:/Users/ilove/AndroidStudioProjects/collathon/app/src/main/res/drawable/selector_radio_button.xml" value="0.215625" />
+        <entry key="..\:/Users/ilove/AndroidStudioProjects/collathon/app/src/main/res/drawable/selector_radio_text.xml" value="0.215625" />
+        <entry key="..\:/Users/ilove/AndroidStudioProjects/collathon/app/src/main/res/layout/fragment_notifications.xml" value="0.4" />
       </map>
     </option>
   </component>

@@ -123,7 +123,6 @@ class AddActivity : AppCompatActivity() {
                     .addOnSuccessListener { result ->
                         var user_family=result.data?.get("family_id").toString().trim()
                         var user_name=result.data?.get("name").toString().trim()
-                        var post_user="post_"+user_name
 
                         val board_info= hashMapOf(
                             "content" to mainText,
@@ -132,8 +131,12 @@ class AddActivity : AppCompatActivity() {
                             "title" to title,
                             "userid" to user_name
                         )
-                        db.collection("family").document(user_family).collection("posts").document(post_user).set(board_info)
+                        db.collection("family").document(user_family).collection("posts").document().set(board_info)
                         uploadImage(it.id.toString())
+
+                        add_title.setText("")
+                        add_maintext.setText("")
+
                         Toast.makeText(this, "데이터가 저장되었습니다", Toast.LENGTH_SHORT).show()
                     }
             }
