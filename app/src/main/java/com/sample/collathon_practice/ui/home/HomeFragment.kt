@@ -1,13 +1,10 @@
 package com.sample.collathon_practice.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -45,7 +42,7 @@ class HomeFragment : Fragment() {
         if (user != null) {
             db?.collection("users").document(user.uid).get()
                 .addOnSuccessListener { result->
-                    user_family=result.data?.get("family_id").toString().trim()
+                    user_family = result.data?.get("family_id").toString().trim()
                     db?.collection("family").document(user_family).get()
                         .addOnSuccessListener { result->
                             family_name=result.data?.get("name").toString().trim()

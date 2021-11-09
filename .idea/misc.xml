@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/82108/AndroidStudioProjects/Collathon_practice/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/Collathon_practice/app/src/main/res/drawable/dashboard_family_title.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/Collathon_practice/app/src/main/res/drawable/dashboard_title.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/Collathon_practice/app/src/main/res/drawable/date_textview.xml" value="0.20104166666666667" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/Collathon_practice/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/Collathon_practice/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.20520833333333333" />
@@ -23,6 +24,8 @@
         <entry key="..\:/Users/82108/AndroidStudioProjects/Collathon_practice/app/src/main/res/layout/fragment_notifications.xml" value="0.10648148148148148" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/Collathon_practice/app/src/main/res/layout/item_main.xml" value="0.20652173913043478" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/Collathon_practice/app/src/main/res/layout/item_recyclerview.xml" value="0.14166666666666666" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/Collathon_practice/app/src/main/res/layout/item_timecapsule.xml" value="0.1890625" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/Collathon_practice/app/src/main/res/layout/item_user.xml" value="0.33" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/Collathon_practice/app/src/main/res/menu/bottom_nav_menu.xml" value="0.340625" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/Collathon_practice/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.17685185185185184" />
       </map>

@@ -1,32 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="18.3dp"
-        android:layout_marginRight="18.7dp"
-        android:layout_marginTop="11dp"
         android:layout_margin="10dp"
-        app:cardCornerRadius="7dp"
-        app:cardBackgroundColor="#ffffff">
+        android:layout_marginLeft="18.3dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginRight="18.7dp"
+        app:cardBackgroundColor="#ffffff"
+        app:cardCornerRadius="7dp">
 
         <RelativeLayout
             android:id="@+id/firstLin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#FFFFFF"
             android:orientation="vertical"
-            android:background="#E2FCFF"
             android:padding="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
+                <TextView
+                    android:paddingBottom="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/name_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:background="@drawable/dashboard_title"
+                    android:text="제목" />
+
 
                 <ImageView
                     android:id="@+id/iv_profileImage"
@@ -37,46 +51,19 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
+                    android:layout_below="@+id/name_tv"
                     android:src="@mipmap/ic_launcher" />
 
-                <LinearLayout
+
+                <TextView
+                    android:id="@+id/content_tv"
                     android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/iv_profileImage"
-                    android:orientation="vertical" android:gravity="center">
-
-                    <TextView
-                        android:id="@+id/name_tv"
-                        android:text="이름"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-                    <TextView
-                        android:id="@+id/email_tv"
-                        android:text="이메일"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
+                    android:layout_marginBottom="30dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#ECFDFF"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    :layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_below="@+id/iv_profileImage">
-
-                    <TextView
-                        android:id="@+id/content_tv"
-                        android:text="hello world!!"
-                        android:textSize="15sp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
+                    android:layout_below="@id/iv_profileImage"
+                    android:text="hello world!!"
+                    android:textSize="15sp" />
             </RelativeLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
