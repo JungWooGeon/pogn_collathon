@@ -1,16 +1,24 @@
 package com.sample.collathon_practice.ui.dashboard
 
+import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import com.sample.collathon_practice.AddActivity
 import com.sample.collathon_practice.R
 import com.sample.collathon_practice.TimeCapsule
@@ -20,6 +28,7 @@ import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.fragment_dashboard.view.*
 import kotlinx.android.synthetic.main.item_timecapsule.view.*
 import kotlinx.android.synthetic.main.item_user.view.*
+import java.io.File
 
 class DashboardFragment : Fragment() {
 
@@ -39,6 +48,7 @@ class DashboardFragment : Fragment() {
     */
 
     val db = Firebase.firestore
+    val storage = Firebase.storage
     var user_family = ""
 
     // This property is only valid between onCreateView and
@@ -94,13 +104,19 @@ class DashboardFragment : Fragment() {
 
                     for (snapshot in querySnapshot!!.documents) {
                         var item = snapshot.toObject(User::class.java)
-                        var profile = R.drawable.logo
                         var title = item?.title.toString().trim()
                         var content = item?.content.toString().trim()
 
-                        if(title != null && content != null) {
-                            var data = User(profile, title, content)
-                            datas.add(data)
+                        var image = item?.image.toString().trim()
+
+                        if(image == "") {
+                            // image가 없을 때
+
+                        } else {
+                            if(title != null && content != null) {
+                                var data = User(image, title, content)
+                                datas.add(data)
+                            }
                         }
                     }
                     notifyDataSetChanged()
@@ -119,7 +135,16 @@ class DashboardFragment : Fragment() {
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
             var viewHolder = (holder as ViewHolder).itemView
 
-            viewHolder.iv_profileImage.setImageResource(datas[position]?.profile)
+
+            if(datas[position]?.image != "") {
+                // dashboard image upload
+                val imgRef = storage.reference.child(user_family+"/"+datas[position]?.image+".jpg")
+                imgRef.downloadUrl.addOnSuccessListener {
+                    // if upload failed, upload logo.png
+                    Glide.with(context!!).load(it).error(R.drawable.logo).into(viewHolder.iv_profileImage)
+                }
+
+            }
             viewHolder.name_tv.text = datas[position]?.title
             viewHolder.content_tv.text = datas[position]?.content
         }

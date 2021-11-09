@@ -1,7 +1,9 @@
 package com.sample.collathon_practice.model
 
+import com.google.firebase.storage.StorageReference
+
 class User(
-    val profile: Int = 0,
+    val image: String = "",
     val title: String = "",
     val content: String = ""
 )
