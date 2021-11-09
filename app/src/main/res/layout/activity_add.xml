@@ -8,14 +8,14 @@
     android:paddingTop="?attr/actionBarSize">
 
     <EditText
-        android:id="@+id/title"
+        android:id="@+id/add_title"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="28dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="15dp"
         android:hint="제목"
         android:inputType="text"
-        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/btn_upload"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,12 +27,12 @@
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
         android:text="타임캡슐"
-        app:layout_constraintBottom_toTopOf="@+id/add_editView"
+        app:layout_constraintBottom_toTopOf="@+id/add_maintext"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/add_title" />
 
     <EditText
-        android:id="@+id/add_editView"
+        android:id="@+id/add_maintext"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="30dp"
@@ -52,7 +52,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_upload"
         android:layout_width="75dp"
         android:layout_height="48dp"
         android:layout_marginEnd="30dp"
@@ -78,7 +78,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_editView" />
+        app:layout_constraintTop_toBottomOf="@+id/add_maintext" />
 
     <TextView
         android:id="@+id/date"
@@ -93,10 +93,10 @@
         android:text="TextView"
         android:textAlignment="center"
         android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/add_editView"
+        app:layout_constraintBottom_toTopOf="@+id/add_maintext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/add_title" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
