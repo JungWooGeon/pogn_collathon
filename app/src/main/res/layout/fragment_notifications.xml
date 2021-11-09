@@ -50,4 +50,111 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginEnd="97dp"
+        android:text="지금 기분이 어떤가요?"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintVertical_bias="0.883" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="168dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <RadioButton
+            android:id="@+id/rb_happy"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/selector_radio_btn_happy"
+            android:scaleType="fitCenter"
+            android:text="기쁨"
+            android:textAlignment="center"
+            android:button="@null"
+            android:textColor="@drawable/selector_radio_text"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <RadioButton
+            android:id="@+id/rb_sad"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/selector_radio_btn_sad"
+            android:button="@null"
+            android:scaleType="fitCenter"
+            android:shadowColor="#FFFFFF"
+            android:text="슬픔"
+            android:textAlignment="center"
+            android:textColor="@drawable/selector_radio_text"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <RadioButton
+            android:id="@+id/rb_bad"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/selector_radio_btn_bad"
+            android:scaleType="fitCenter"
+            android:text="찜찜"
+            android:textAlignment="center"
+            android:button="@null"
+            android:textColor="@drawable/selector_radio_text"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <RadioButton
+            android:id="@+id/rb_angry"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/selector_radio_btn_angry"
+            android:scaleType="fitCenter"
+            android:text="분노"
+            android:textAlignment="center"
+            android:button="@null"
+            android:textColor="@drawable/selector_radio_text"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <RadioButton
+            android:id="@+id/rb_surprised"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/selector_radio_btn_surprised"
+            android:button="@null"
+            android:scaleType="fitCenter"
+            android:text="놀람"
+            android:textAlignment="center"
+            android:textColor="@drawable/selector_radio_text"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <RadioButton
+            android:id="@+id/rb_uncomfortable"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/selector_radio_btn_uncomfortable"
+            android:button="@null"
+            android:fontFamily="sans-serif-medium"
+            android:scaleType="fitCenter"
+            android:text="언짢"
+            android:textAlignment="center"
+            android:textColor="@drawable/selector_radio_text"
+            tools:ignore="TouchTargetSizeCheck" />
+    </RadioGroup>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
