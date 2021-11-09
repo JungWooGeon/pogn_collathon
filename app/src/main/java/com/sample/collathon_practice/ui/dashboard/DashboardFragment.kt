@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ListView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.sample.collathon_practice.AddActivity
 import com.sample.collathon_practice.R
@@ -20,15 +21,15 @@ class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
     var UserList = arrayListOf<User>(
-        User(R.drawable.ic_home_black_24dp,"한국형수달","korean-otter@naver.com","hello world!!!"),
-        User(R.drawable.ic_home_black_24dp,"김수연","jmssk11@naver.com","왜 먹어도 먹어도 배가 고픈 것일까"),
-        User(R.drawable.ic_home_black_24dp,"임채원","hello@gmail.com","으이이익"),
-        User(R.drawable.ic_home_black_24dp,"물고기","asdf@naver.com","ㅁㄴㅇㄹasdfasdfasdfasdfasdfasdfasdfasdfㅁㄴㅇㄹas d f a s df as d fa s d f a s d f as d f a s d f a s df"),
-        User(R.drawable.ic_home_black_24dp,"도마뱀","qwer@naver.com","ㅁㄴㅇㄹasdfasdfasdfㅁㄴㅇㄹasdfasdfasdfㅁㄴㅇㄹasdfasdfasdfㅁㄴㅇㄹasdfasdfasdf"),
-        User(R.drawable.ic_home_black_24dp,"멈무이","zxcv@naver.com","보자보자 으디보자"),
-        User(R.drawable.ic_home_black_24dp,"냥이","cat@naver.com","넌 두고보자"),
-        User(R.drawable.ic_home_black_24dp,"집사님","asdfasdf@naver.com","보자보자 으디보자"),
-        User(R.drawable.ic_home_black_24dp,"otter","otter66@kakao.com","넌 다음에 보자")
+        User(R.drawable.logo,"한국형수달","korean-otter@naver.com","hello world!!!"),
+        User(R.drawable.logo,"김수연","jmssk11@naver.com","왜 먹어도 먹어도 배가 고픈 것일까"),
+        User(R.drawable.logo,"임채원","hello@gmail.com","으이이익"),
+        User(R.drawable.logo,"물고기","asdf@naver.com","ㅁㄴㅇㄹasdfasdfasdfasdfasdfasdfasdfasdfㅁㄴㅇㄹas d f a s df as d fa s d f a s d f as d f a s d f a s df"),
+        User(R.drawable.logo,"도마뱀","qwer@naver.com","ㅁㄴㅇㄹasdfasdfasdfㅁㄴㅇㄹasdfasdfasdfㅁㄴㅇㄹasdfasdfasdfㅁㄴㅇㄹasdfasdfasdf"),
+        User(R.drawable.logo,"멈무이","zxcv@naver.com","보자보자 으디보자"),
+        User(R.drawable.logo,"냥이","cat@naver.com","넌 두고보자"),
+        User(R.drawable.logo,"집사님","asdfasdf@naver.com","보자보자 으디보자"),
+        User(R.drawable.logo,"otter","otter66@kakao.com","넌 다음에 보자")
     )
 
     // This property is only valid between onCreateView and
