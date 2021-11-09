@@ -24,12 +24,6 @@ class NewActivity : AppCompatActivity() {
         val user = Firebase.auth.currentUser
         val db = Firebase.firestore
 
-//        val user_data = hashMapOf{
-//            "name" to "",
-//            "family_id" to ""
-//        }
-//        db.collection("users").document(userid).set(user_data)
-
         val userid = user?.uid // email?.split("@")?.get(0).toString()
 
         btn_join.setOnClickListener {
