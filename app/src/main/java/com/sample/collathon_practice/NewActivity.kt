@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -16,6 +17,12 @@ class NewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new)
+
+        // action bar hide
+        var actionBar : ActionBar?
+
+        actionBar = supportActionBar;
+        actionBar?.hide();
 
         val btn_join = this.findViewById<Button>(R.id.btn_join)
         val btn_create = this.findViewById<Button>(R.id.btn_create)

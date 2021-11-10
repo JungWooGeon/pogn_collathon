@@ -33,19 +33,6 @@ import java.io.File
 class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
-    /*
-    var UserList = arrayListOf<User>(
-        User(R.drawable.logo,"한국형수달","hello world!!!"),
-        User(R.drawable.logo,"김수연","왜 먹어도 먹어도 배가 고픈 것일까"),
-        User(R.drawable.logo,"임채원","으이이익"),
-        User(R.drawable.logo,"물고기","ㅁㄴㅇㄹasdfasdfasdfasdfasdfasdfasdfasdfㅁㄴㅇㄹas d f a s df as d fa s d f a s d f as d f a s d f a s df"),
-        User(R.drawable.logo,"도마뱀","ㅁㄴㅇㄹasdfasdfasdfㅁㄴㅇㄹasdfasdfasdfㅁㄴㅇㄹasdfasdfasdfㅁㄴㅇㄹasdfasdfasdf"),
-        User(R.drawable.logo,"멈무이","보자보자 으디보자"),
-        User(R.drawable.logo,"냥이","넌 두고보자"),
-        User(R.drawable.logo,"집사님","보자보자 으디보자"),
-        User(R.drawable.logo,"otter","넌 다음에 보자")
-    )
-    */
 
     val db = Firebase.firestore
     val storage = Firebase.storage
@@ -68,6 +55,11 @@ class DashboardFragment : Fragment() {
             db?.collection("users").document(user.uid).get()
                 .addOnSuccessListener { result ->
                     user_family = result.data?.get("family_id").toString().trim()
+
+                    db?.collection("family").document(user_family).get().addOnSuccessListener {
+                        r->
+                        family_title.text = r.data?.get("name").toString().trim()
+                    }
 
                     var recyclerView: RecyclerView = binding.recycleDashboard
                     recyclerView.adapter = DashboardAdapter()

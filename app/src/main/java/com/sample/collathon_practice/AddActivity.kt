@@ -33,11 +33,11 @@ class AddActivity : AppCompatActivity() {
     var cal = Calendar.getInstance()
     var uriPhoto : Uri? = null
     var IMAGE_PICK = 0;
+    var user_family = ""
+    var user_name = ""
 
     lateinit var storage: FirebaseStorage
     lateinit var firestore: FirebaseFirestore
-
-    var family = "temp_family"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -112,7 +112,7 @@ class AddActivity : AppCompatActivity() {
             var title = add_title.text.toString()
             var mainText = add_maintext.text.toString()
             var date = date.text.toString()
-            var imageUrl = it.toString()
+            var imageUrl = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
             
             //DB 저장
             val user=Firebase.auth.currentUser
@@ -120,8 +120,8 @@ class AddActivity : AppCompatActivity() {
             if(user != null){
                 db?.collection("users").document(user.uid).get()
                     .addOnSuccessListener { result ->
-                        var user_family=result.data?.get("family_id").toString().trim()
-                        var user_name=result.data?.get("name").toString().trim()
+                        user_family=result.data?.get("family_id").toString().trim()
+                        user_name=result.data?.get("name").toString().trim()
 
                         val board_info= hashMapOf(
                             "content" to mainText,
@@ -131,7 +131,7 @@ class AddActivity : AppCompatActivity() {
                             "userid" to user_name
                         )
                         db.collection("family").document(user_family).collection("posts").document().set(board_info)
-                        uploadImage(it.id.toString())
+                        uploadImage(imageUrl)
 
                         add_title.setText("")
                         add_maintext.setText("")
@@ -145,7 +145,7 @@ class AddActivity : AppCompatActivity() {
     // upload image in firebase storage
     private fun uploadImage(docId: String) {
         val storageRef: StorageReference = storage.reference
-        val imgRef: StorageReference = storageRef.child(family+"/${docId}.jpg")
+        val imgRef: StorageReference = storageRef.child(user_family+"/${docId}.jpg")
         // file upload
         var file = uriPhoto
         if (file != null) {
