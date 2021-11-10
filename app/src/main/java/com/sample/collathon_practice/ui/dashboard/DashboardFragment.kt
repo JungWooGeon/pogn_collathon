@@ -1,9 +1,6 @@
 package com.sample.collathon_practice.ui.dashboard
 
-import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,19 +13,14 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import com.sample.collathon_practice.AddActivity
 import com.sample.collathon_practice.R
-import com.sample.collathon_practice.TimeCapsule
 import com.sample.collathon_practice.databinding.FragmentDashboardBinding
-import com.sample.collathon_practice.model.User
+import com.sample.collathon_practice.model.Post
 import kotlinx.android.synthetic.main.fragment_dashboard.*
-import kotlinx.android.synthetic.main.fragment_dashboard.view.*
-import kotlinx.android.synthetic.main.item_timecapsule.view.*
+import kotlinx.android.synthetic.main.item_user.*
 import kotlinx.android.synthetic.main.item_user.view.*
-import java.io.File
 
 class DashboardFragment : Fragment() {
 
@@ -86,28 +78,29 @@ class DashboardFragment : Fragment() {
     }
 
     inner class DashboardAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-        var datas : ArrayList<User> = arrayListOf()
+        var data : ArrayList<Post> = arrayListOf()
 
         init {
             db?.collection("family").document(user_family)
-                .collection("posts").addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                .collection("posts").addSnapshotListener { querySnapshot, e ->
                     // Clear ArrayList
-                    datas.clear()
+                    data.clear()
 
                     for (snapshot in querySnapshot!!.documents) {
-                        var item = snapshot.toObject(User::class.java)
+                        var postid = snapshot.id
+                        var item = snapshot.toObject(Post::class.java)
                         var title = item?.title.toString().trim()
                         var content = item?.content.toString().trim()
 
                         var image = item?.image.toString().trim()
-
+                        var like = item?.like
                         if(image == "") {
                             // image가 없을 때
 
                         } else {
-                            if(title != null && content != null) {
-                                var data = User(image, title, content)
-                                datas.add(data)
+                            if(title != null && content != null && like != null) {
+                                var data = Post(postid, image, title, content, like)
+                                this.data.add(data)
                             }
                         }
                     }
@@ -117,16 +110,39 @@ class DashboardFragment : Fragment() {
         // item_user.xml을 inflate
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
             var view = LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false)
-            view.check_like.setOnClickListener {
-                // click like checkbox
-                db?.collection("family").document(user_family)
-                    .collection("posts").document()
-                view.like_count.text = (view.like_count.text.toString().toInt()+1).toString()
-            }
-            view.check_hate.setOnClickListener {
-                // click hate checkbox
-                view.hate_count.text = (view.hate_count.text.toString().toInt()+1).toString()
-            }
+
+            var user = Firebase.auth.currentUser
+
+            view.radioGroup_post.setOnCheckedChangeListener { rg, checkedId ->
+                if (user != null){
+                    var postid = view.post_id.text as String
+                    var docRef = db.collection("family").document(user_family).collection("posts").document(postid) // 게시글 doc 불러옴
+
+                    when (checkedId) {
+                        R.id.rb_like -> {
+                            Log.d("MY", ":hello it's like")
+
+                            docRef.get().addOnSuccessListener { result ->
+                                var likes:ArrayList<Any?> = result.data?.get("like") as ArrayList<Any?>
+
+//                                if (rb_like.isChecked){
+//                                    likes.remove(user.uid)
+//                                    rb_like.isChecked = false
+//                                } else {
+//
+//                                }
+                                if(user.uid !in likes){
+                                    likes.add(user.uid)
+                                }
+
+                                docRef.update(mapOf(
+                                    "like" to likes
+                                ))
+                            }
+                        }
+                    } // when
+                } // if
+            } // setOnCheckedChangeListener
             return ViewHolder(view)
         }
 
@@ -137,21 +153,31 @@ class DashboardFragment : Fragment() {
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
             var viewHolder = (holder as ViewHolder).itemView
 
-
-            if(datas[position]?.image != "") {
+            if(data[position]?.image != "") {
                 // dashboard image upload
-                val imgRef = storage.reference.child(user_family+"/"+datas[position]?.image+".jpg")
+                val imgRef = storage.reference.child(user_family+"/"+data[position]?.image+".jpg")
                 imgRef.downloadUrl.addOnSuccessListener {
                     // if upload failed, upload logo.png
                     Glide.with(context!!).load(it).error(R.drawable.logo).into(viewHolder.iv_profileImage)
                 }
             }
-            viewHolder.name_tv.text = datas[position]?.title
-            viewHolder.content_tv.text = datas[position]?.content
+
+            viewHolder.post_id.text = data[position]?.postid
+            viewHolder.name_tv.text = data[position]?.title
+            viewHolder.content_tv.text = data[position]?.content
+            viewHolder.cnt_like.text = data[position]?.like.size.toString()
+
+            var like_arr = data[position]?.like
+            var user = Firebase.auth.currentUser
+
+            if(user?.uid in like_arr){
+                viewHolder.rb_like.isChecked = true
+            }
+
         }
 
         override fun getItemCount(): Int { // size
-            return datas.size
+            return data.size
         }
     }
 }

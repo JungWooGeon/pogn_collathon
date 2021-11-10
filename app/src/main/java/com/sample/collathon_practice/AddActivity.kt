@@ -125,8 +125,8 @@ class AddActivity : AppCompatActivity() {
                         user_family=result.data?.get("family_id").toString().trim()
                         user_name=result.data?.get("name").toString().trim()
 
-                        var like:ArrayList<Any?> = arrayListOf<Any?>(0)
-                        var hate:ArrayList<Any?> = arrayListOf<Any?>(0)
+                        var like:ArrayList<Any?> = arrayListOf<Any?>()
+                        var hate:ArrayList<Any?> = arrayListOf<Any?>()
 
                         val board_info= hashMapOf(
                             "content" to mainText,
