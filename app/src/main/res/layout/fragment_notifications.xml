@@ -41,14 +41,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="260dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="33dp"
         android:backgroundTint="#F3F3EF"
         android:text="로그아웃"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintTop_toBottomOf="@+id/family_uid" />
 
     <TextView
         android:id="@+id/textView4"
@@ -156,5 +156,16 @@
             android:textColor="@drawable/selector_radio_text"
             tools:ignore="TouchTargetSizeCheck" />
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/family_uid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

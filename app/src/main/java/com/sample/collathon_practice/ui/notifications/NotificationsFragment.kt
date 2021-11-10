@@ -52,6 +52,14 @@ class NotificationsFragment : Fragment() {
         var user = Firebase.auth.currentUser
         var docRef = user?.let { db.collection("users").document(it.uid) }
 
+        if (user != null) {
+            db?.collection("users").document(user.uid).get()
+                .addOnSuccessListener { result ->
+                    var user_family = result.data?.get("family_id").toString().trim()
+                    binding.familyUid.text="family ID: "+user_family
+                }
+        }
+        
         var userfeel = 0
 
         //라디오 그룹 설정
