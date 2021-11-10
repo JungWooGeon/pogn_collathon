@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     lateinit var user: FirebaseUser
-    var userfeel: Any? = null
+//    var userfeel: Any? = null
     var username=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,19 +54,7 @@ class MainActivity : AppCompatActivity() {
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
 
         user = Firebase.auth.currentUser!!
-//        getTheFeel(user.uid)
         setId(user.uid)
-    }
-
-    private fun getTheFeel(uid: String?) {
-        if (uid != null){
-            val db = Firebase.firestore
-
-            var docRef = db.collection("users").document(uid)
-            docRef.get().addOnSuccessListener { result ->
-                userfeel = result.data?.get("feel")
-            }
-        }
     }
 
     fun setId(uid: String?) {

@@ -160,7 +160,7 @@
         app:layout_constraintTop_toTopOf="@+id/view_5" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/feel_1"
         android:layout_width="39dp"
         android:layout_height="39dp"
         android:layout_marginStart="39dp"
@@ -169,7 +169,7 @@
         tools:src="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/feel_2"
         android:layout_width="39dp"
         android:layout_height="39dp"
         android:layout_marginStart="39dp"
@@ -178,7 +178,7 @@
         tools:src="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/feel_3"
         android:layout_width="39dp"
         android:layout_height="39dp"
         android:layout_marginStart="39dp"
@@ -187,7 +187,7 @@
         tools:src="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/feel_4"
         android:layout_width="39dp"
         android:layout_height="39dp"
         android:layout_marginStart="39dp"
@@ -196,7 +196,7 @@
         tools:src="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/feel_5"
         android:layout_width="39dp"
         android:layout_height="39dp"
         android:layout_marginStart="39dp"

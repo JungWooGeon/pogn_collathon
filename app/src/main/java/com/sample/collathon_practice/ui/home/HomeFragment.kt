@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.sample.collathon_practice.MainActivity
 import com.sample.collathon_practice.R
 import com.sample.collathon_practice.TimeCapsule
 import com.sample.collathon_practice.databinding.FragmentHomeBinding
@@ -24,9 +26,17 @@ class HomeFragment : Fragment() {
     var user_family=""
     var family_name=""
     var family_member:ArrayList<Any?> = arrayListOf<Any?>()
-
     
     private val binding get() = _binding!!
+
+    private val feels_img = hashMapOf(
+        "0" to R.drawable.angry,
+        "1" to R.drawable.sad,
+        "2" to R.drawable.bad,
+        "3" to R.drawable.angry,
+        "4" to R.drawable.surprised,
+        "5" to R.drawable.uncomfortable
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,7 +49,12 @@ class HomeFragment : Fragment() {
         
         //get family info
         val user = Firebase.auth.currentUser
+
+        var name=root.findViewById<TextView>(R.id.setting_name)
+
+
         if (user != null) {
+
             db?.collection("users").document(user.uid).get()
                 .addOnSuccessListener { result->
                     user_family=result.data?.get("family_id").toString().trim()
@@ -68,6 +83,15 @@ class HomeFragment : Fragment() {
                                             temp=result2.data?.get("name").toString().trim()
                                             var x=root.findViewById<TextView>(getResources().getIdentifier("user_"+k,"id","com.sample.collathon_practice"))
                                             x.setText(temp)
+
+                                            var userfeel = result2.data?.get("feel").toString()
+                                            var iv = root.findViewById<ImageView>(resources.getIdentifier("feel_"+k, "id", "com.sample.collathon_practice"))
+
+                                            var feel = feels_img
+                                            feel[userfeel]?.let {
+                                                iv.setImageResource(it)
+                                            }
+
                                             k++
                                         }
                                 }
