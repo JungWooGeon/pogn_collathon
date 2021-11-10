@@ -117,6 +117,16 @@ class DashboardFragment : Fragment() {
         // item_user.xml을 inflate
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
             var view = LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false)
+            view.check_like.setOnClickListener {
+                // click like checkbox
+                db?.collection("family").document(user_family)
+                    .collection("posts").document()
+                view.like_count.text = (view.like_count.text.toString().toInt()+1).toString()
+            }
+            view.check_hate.setOnClickListener {
+                // click hate checkbox
+                view.hate_count.text = (view.hate_count.text.toString().toInt()+1).toString()
+            }
             return ViewHolder(view)
         }
 

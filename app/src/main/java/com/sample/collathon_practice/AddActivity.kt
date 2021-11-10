@@ -125,12 +125,17 @@ class AddActivity : AppCompatActivity() {
                         user_family=result.data?.get("family_id").toString().trim()
                         user_name=result.data?.get("name").toString().trim()
 
+                        var like:ArrayList<Any?> = arrayListOf<Any?>(0)
+                        var hate:ArrayList<Any?> = arrayListOf<Any?>(0)
+
                         val board_info= hashMapOf(
                             "content" to mainText,
                             "image" to imageUrl,
                             "time" to date,
                             "title" to title,
-                            "userid" to user_name
+                            "userid" to user_name,
+                            "like" to like,
+                            "hate" to hate
                         )
                         db.collection("family").document(user_family).collection("posts").document().set(board_info)
                         uploadImage(imageUrl)
