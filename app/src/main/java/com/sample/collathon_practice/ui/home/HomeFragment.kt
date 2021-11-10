@@ -17,6 +17,8 @@ import com.sample.collathon_practice.R
 import com.sample.collathon_practice.TimeCapsule
 import com.sample.collathon_practice.databinding.FragmentHomeBinding
 import kotlinx.android.synthetic.main.item_timecapsule.view.*
+import java.time.LocalDate
+import java.time.LocalTime
 import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment() {
@@ -48,9 +50,78 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
         
         //get family info
-        val user = Firebase.auth.currentUser
-
         var name=root.findViewById<TextView>(R.id.setting_name)
+
+        var user = Firebase.auth.currentUser!!
+
+        if (user.uid != null){
+            var docRef = db.collection("users").document(user.uid)
+            docRef.get().addOnSuccessListener { result ->
+                var familyuid=result.data?.get("family_id") as String
+
+                println("familyuid"+familyuid)
+                if (familyuid != null) {
+                    var current_time= LocalDate.now()
+                    var current_year:Int=current_time.year
+                    var current_month:Int=current_time.monthValue
+                    var current_day:Int=current_time.dayOfMonth
+                    var current_tt= LocalTime.now()
+                    var current_hour:Int=current_tt.hour
+                    var current_m:Int=current_tt.minute
+                    println("현재시간:"+current_time+" "+ current_year+" "+current_month+" "+current_day+" "+current_tt+" "+current_hour+" "+current_m)
+
+                    db?.collection("family").document(familyuid)
+                        .collection("posts").addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                            // Clear ArrayList
+                            for (snapshot in querySnapshot!!.documents) {
+                                var documentid=snapshot.id.toString()
+
+                                var time=snapshot.data?.get("time").toString()
+                                var temp=time.split("\t")
+                                var year_month_day=temp[0].trim().split("/")
+                                var document_time=temp[1].trim().split(":")
+                                println("test:"+document_time[0]+" "+document_time[1] + "test2:"+current_hour+" "+current_m)
+
+                                var flag=false
+                                if(year_month_day[0].toInt()<current_year){ //year
+                                    flag=true
+                                }
+                                else if(year_month_day[0].toInt()==current_year){ //same year
+                                    println("same year")
+                                    if(year_month_day[1].toInt()<current_month){ //month
+                                        flag=true
+                                    }
+                                    else if(year_month_day[1].toInt()==current_month){ //same month
+                                        println("same month")
+                                        if(year_month_day[2].toInt()<current_day){ //day
+                                            flag=true
+                                        }
+                                        else if(year_month_day[2].toInt()==current_day){ //same day
+                                            println("same day")
+                                            if(document_time[0].toInt()<current_hour){
+                                                flag=true
+                                            }
+                                            else if(document_time[0].toInt()==current_hour){ //same hour
+                                                println("same hour")
+                                                println("min:"+document_time[1].toInt()+" "+current_m)
+                                                if(document_time[1].toInt()<current_m){
+                                                    flag=true
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                if(flag==true){
+                                    println("삭제:"+documentid)
+                                    db.collection("family").document(familyuid).collection("posts").document(documentid).delete()
+                                }
+
+                            }
+                        }
+                }
+
+            }
+        }
 
 
         if (user != null) {
@@ -109,7 +180,12 @@ class HomeFragment : Fragment() {
         }
         return root
     }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+//        var familyuid=(getActivity() as MainActivity).familyuid
+
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
