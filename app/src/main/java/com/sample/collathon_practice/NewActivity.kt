@@ -106,7 +106,7 @@ class NewActivity : AppCompatActivity() {
                    val signpost= hashMapOf(
                         "content" to "가입을 축하합니다",
                         "image" to "",
-                        "time" to "2021/11/15 22:8",
+                        "time" to "2021/11/15" + "\t" + "22:8",
                         "title" to "가입 축하합니다",
                         "userid" to "관리자"
                     )

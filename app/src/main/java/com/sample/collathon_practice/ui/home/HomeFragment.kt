@@ -113,7 +113,7 @@ class HomeFragment : Fragment() {
                                         }
                                     }
                                 }
-                                if(flag == true){
+                                if(flag){
                                     println("삭제:"+documentid)
                                     db.collection("family").document(familyuid).collection("posts").document(documentid).delete()
                                 }
