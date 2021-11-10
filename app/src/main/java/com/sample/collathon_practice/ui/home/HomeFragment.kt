@@ -1,6 +1,8 @@
 package com.sample.collathon_practice.ui.home
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -78,8 +80,8 @@ class HomeFragment : Fragment() {
 
                                 var time=snapshot.data?.get("time").toString()
                                 var temp=time.split("\t")
-                                var year_month_day=temp[0].trim().split("/")
-                                var document_time=temp[1].trim().split(":")
+                                var year_month_day = temp[0].trim().split("/")
+                                var document_time = temp[1].trim().split(":")
                                 println("test:"+document_time[0]+" "+document_time[1] + "test2:"+current_hour+" "+current_m)
 
                                 var flag=false
@@ -111,7 +113,7 @@ class HomeFragment : Fragment() {
                                         }
                                     }
                                 }
-                                if(flag==true){
+                                if(flag == true){
                                     println("삭제:"+documentid)
                                     db.collection("family").document(familyuid).collection("posts").document(documentid).delete()
                                 }
@@ -123,53 +125,62 @@ class HomeFragment : Fragment() {
             }
         }
 
-
         if (user != null) {
-
             db?.collection("users").document(user.uid).get()
-                .addOnSuccessListener { result->
+                .addOnSuccessListener { result ->
                     user_family=result.data?.get("family_id").toString().trim()
-                    db?.collection("family").document(user_family).get()
-                        .addOnSuccessListener { result->
-                            family_name=result.data?.get("name").toString().trim()
+                    db?.collection("family").document(user_family) // 실시간
+                        .addSnapshotListener { result1, e ->
+                            if (e != null) {
+                                Log.w(TAG, "home fragment family listen:error", e)
+                                return@addSnapshotListener
+                            }
 
-                            family_member= result.data?.get("members") as ArrayList<Any?>
+                            if (result1 != null){
+                                family_name=result1.data?.get("name").toString().trim()
+                                family_member= result1.data?.get("members") as ArrayList<Any?>
 
-                            // family -> 최대 5명 보이도록 설정
-                            while(family_member.size<5){
-                                family_member.add("0")
-                                if(family_member.size>=5){
-                                    break
+                                // family -> 최대 5명 보이도록 설정
+                                while(family_member.size<5){
+                                    family_member.add("0")
+                                    if(family_member.size>=5){
+                                        break
+                                    }
+                                }
+
+                                var k=1
+                                for(i in family_member){
+                                    var temp = ""
+                                    if (i == "0"){
+                                        temp = "없음"
+                                    }else{
+                                        var x=root.findViewById<TextView>(getResources().getIdentifier("user_"+k,"id","com.sample.collathon_practice"))
+                                        var iv = root.findViewById<ImageView>(resources.getIdentifier("feel_"+k, "id", "com.sample.collathon_practice"))
+
+                                        db?.collection("users").document(i.toString()) // 실시간
+                                            .addSnapshotListener { result2, e ->
+                                                if (e != null) {
+                                                    Log.w(TAG, "home fragment users listen:error", e)
+                                                    return@addSnapshotListener
+                                                }
+
+                                                if (result2 != null) {
+                                                    temp = result2.data?.get("name").toString().trim()
+                                                    x.text = temp
+
+                                                    var userfeel = result2.data?.get("feel").toString()
+                                                    var feel = feels_img
+                                                    feel[userfeel]?.let {
+                                                        iv.setImageResource(it)
+                                                    }
+                                                }
+                                            }
+                                        k++
+                                    }
                                 }
                             }
 
-                            var k=1
-                            for(i in family_member){
-                                var temp=""
-                                if (i=="0"){
-                                    temp="없음"
-                                }else{
-                                    db?.collection("users").document(i.toString()).get()
-                                        .addOnSuccessListener { result2->
-                                            temp=result2.data?.get("name").toString().trim()
-                                            var x=root.findViewById<TextView>(getResources().getIdentifier("user_"+k,"id","com.sample.collathon_practice"))
-                                            x.setText(temp)
-
-                                            var userfeel = result2.data?.get("feel").toString()
-                                            var iv = root.findViewById<ImageView>(resources.getIdentifier("feel_"+k, "id", "com.sample.collathon_practice"))
-
-                                            var feel = feels_img
-                                            feel[userfeel]?.let {
-                                                iv.setImageResource(it)
-                                            }
-
-                                            k++
-                                        }
-                                }
-                        }
-
-
-                    var familyname=binding.fmname
+                            var familyname=binding.fmname
                             familyname.text=family_name
 
                             var recyclerView:RecyclerView=binding.homeRecyclerview
@@ -180,12 +191,11 @@ class HomeFragment : Fragment() {
         }
         return root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        var familyuid=(getActivity() as MainActivity).familyuid
-
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
