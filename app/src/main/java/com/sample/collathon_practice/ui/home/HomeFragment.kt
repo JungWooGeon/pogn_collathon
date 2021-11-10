@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val feels_img = hashMapOf(
-        "0" to R.drawable.angry,
+        "0" to R.drawable.happy,
         "1" to R.drawable.sad,
         "2" to R.drawable.bad,
         "3" to R.drawable.angry,
