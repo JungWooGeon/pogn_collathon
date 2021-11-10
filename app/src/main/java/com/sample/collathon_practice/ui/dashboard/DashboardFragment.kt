@@ -135,7 +135,6 @@ class DashboardFragment : Fragment() {
                     // if upload failed, upload logo.png
                     Glide.with(context!!).load(it).error(R.drawable.logo).into(viewHolder.iv_profileImage)
                 }
-
             }
             viewHolder.name_tv.text = datas[position]?.title
             viewHolder.content_tv.text = datas[position]?.content
