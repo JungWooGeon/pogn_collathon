@@ -2,11 +2,13 @@ package com.sample.collathon_practice
 
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.app.Dialog
 import android.app.TimePickerDialog
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.util.Log
 import android.view.View
 import android.widget.DatePicker
@@ -14,6 +16,7 @@ import android.widget.TextView
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
+import androidx.fragment.app.DialogFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -71,7 +74,6 @@ class AddActivity : AppCompatActivity() {
                 updateDateInView()
             }
         }
-
         val timeSetListener = object : TimePickerDialog.OnTimeSetListener {
             override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
                 cal.set(Calendar.HOUR_OF_DAY, hourOfDay)
@@ -165,8 +167,8 @@ class AddActivity : AppCompatActivity() {
     }
 
     private fun updateDateInView() {
-        val myFormat = "yyyy/MM/dd \t hh/mm" // mention the format you need
-        val sdf = SimpleDateFormat(myFormat, Locale.US)
+        val myFormat = "yyyy/MM/dd \t HH:mm" // mention the format you need
+        val sdf = SimpleDateFormat(myFormat, Locale.KOREA)
         textview_date!!.text = sdf.format(cal.getTime())
     }
 }
